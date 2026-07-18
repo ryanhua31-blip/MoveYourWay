@@ -10,9 +10,9 @@
   --red: #e46252;
   --blue: #3d76b8;
   --shadow: 0 18px 45px rgba(23, 32, 27, 0.12);
-  --font-display: "Trebuchet MS", "Gill Sans", "Avenir Next", sans-serif;
-  --font-body: Verdana, Geneva, Tahoma, sans-serif;
-  --font-ui: "Segoe UI", Roboto, "Avenir Next", sans-serif;
+  --font-display: "SF Pro Rounded", "Nunito Sans", "Aptos Display", "Avenir Next", sans-serif;
+  --font-body: "SF Pro Text", Inter, Aptos, "Segoe UI", sans-serif;
+  --font-ui: "SF Pro Text", Inter, Aptos, "Segoe UI", sans-serif;
 }
 
 * {
