@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Move Your Way</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Move Your Way home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Move Your Way</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#reasons">Reasons</a>
+      <a href="#moves">Pick a Move</a>
+      <a href="#starter">Start Small</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-art" aria-hidden="true">
+        <div class="court-line court-line-one"></div>
+        <div class="court-line court-line-two"></div>
+        <div class="player player-one">
+          <span></span>
+        </div>
+        <div class="player player-two">
+          <span></span>
+        </div>
+        <div class="motion-dot dot-one"></div>
+        <div class="motion-dot dot-two"></div>
+        <div class="motion-dot dot-three"></div>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">For people who do not feel sporty yet</p>
+        <h1>Get athletic, your way.</h1>
+        <p>
+          You do not need to be the fastest, strongest, loudest, or most competitive person in the room.
+          You just need one move that makes today feel a little more alive.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#moves">Find a move</a>
+          <a class="button secondary" href="#reasons">Why bother?</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro" id="reasons">
+      <div>
+        <p class="eyebrow">Real reasons</p>
+        <h2>Sports are not only for sporty people.</h2>
+      </div>
+      <div class="reason-grid">
+        <article>
+          <strong>More energy</strong>
+          <p>Moving wakes your body up, especially when school, screens, and sitting make everything feel slow.</p>
+        </article>
+        <article>
+          <strong>Better mood</strong>
+          <p>A little movement can burn off stress, clear your head, and make the day feel less stuck.</p>
+        </article>
+        <article>
+          <strong>Easy friends</strong>
+          <p>Games and activities give you something to do together without having to force a conversation.</p>
+        </article>
+        <article>
+          <strong>Your own pace</strong>
+          <p>You can start with five minutes, choose something chill, and still count it as a win.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section moves-section" id="moves">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Gallery</p>
+          <h2>Pick Your Own Move</h2>
+          <p>Choose by vibe, not by how athletic you think you are.</p>
+        </div>
+        <div class="activity-count" id="activity-count" aria-live="polite"></div>
+      </div>
+
+      <div class="filter-bar" aria-label="Activity categories">
+        <button class="filter-button active" data-filter="all" type="button">All</button>
+        <button class="filter-button" data-filter="sports" type="button">Sports</button>
+        <button class="filter-button" data-filter="workouts" type="button">Workouts</button>
+        <button class="filter-button" data-filter="outdoors" type="button">Outdoors</button>
+        <button class="filter-button" data-filter="creative" type="button">Creative</button>
+        <button class="filter-button" data-filter="chill" type="button">Chill</button>
+      </div>
+
+      <div class="card-grid" id="activity-grid"></div>
+    </section>
+
+    <section class="section starter" id="starter">
+      <div>
+        <p class="eyebrow">Tiny plan</p>
+        <h2>Start with almost nothing.</h2>
+        <p>
+          Pick one activity, try it for ten minutes, and stop before it feels impossible.
+          Coming back tomorrow is the real athletic move.
+        </p>
+      </div>
+      <ol class="starter-list">
+        <li><span>1</span>Choose the least scary card.</li>
+        <li><span>2</span>Invite one person or put on one playlist.</li>
+        <li><span>3</span>Do ten minutes, then rate the vibe.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Move Your Way: athletic does not have to mean intense.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
