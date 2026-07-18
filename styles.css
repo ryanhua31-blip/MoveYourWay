@@ -10,13 +10,14 @@
   --red: #e46252;
   --blue: #3d76b8;
   --shadow: 0 18px 45px rgba(23, 32, 27, 0.12);
-  --font-display: "SF Pro Rounded", "Nunito Sans", "Aptos Display", "Avenir Next", sans-serif;
-  --font-body: "SF Pro Text", Inter, Aptos, "Segoe UI", sans-serif;
-  --font-ui: "SF Pro Text", Inter, Aptos, "Segoe UI", sans-serif;
+  --font-display: ui-rounded, "SF Pro Rounded", "Nunito Sans", "Aptos Display", "Avenir Next", system-ui;
+  --font-body: "SF Pro Text", Inter, Aptos, "Segoe UI", system-ui;
+  --font-ui: "SF Pro Text", Inter, Aptos, "Segoe UI", system-ui;
 }
 
 * {
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 html {
