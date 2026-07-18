@@ -1,238 +1,306 @@
+const activityGroups = [
+  {
+    id: "soft-start",
+    name: "Soft Start",
+    energy: "Low energy",
+    description: "Easy moves for when you are tired, nervous, or just trying to begin."
+  },
+  {
+    id: "mood-boost",
+    name: "Mood Boost",
+    energy: "Medium energy",
+    description: "Playful activities for shaking off boredom without making it too serious."
+  },
+  {
+    id: "social-energy",
+    name: "Social Energy",
+    energy: "Group friendly",
+    description: "Moves that give you a reason to hang out while your body quietly does the work."
+  },
+  {
+    id: "focus-reset",
+    name: "Focus Reset",
+    energy: "Calm and steady",
+    description: "Activities that help you breathe, reset, and feel more in control."
+  },
+  {
+    id: "big-energy",
+    name: "Big Energy",
+    energy: "High energy",
+    description: "For restless days when you actually want to sweat, punch, jump, sprint, or climb."
+  },
+  {
+    id: "outside-adventure",
+    name: "Outside Adventure",
+    energy: "Fresh air",
+    description: "Outdoor moves for people who would rather explore than count reps."
+  }
+];
+
+const groupLookup = Object.fromEntries(activityGroups.map((group) => [group.id, group]));
+
+const quizMatches = {
+  "soft-start": {
+    title: "Soft Start",
+    text: "Low-pressure moves for days when getting started is the whole win."
+  },
+  "mood-boost": {
+    title: "Mood Boost",
+    text: "Playful moves that make exercise feel more like changing the vibe."
+  },
+  "social-energy": {
+    title: "Social Energy",
+    text: "Group-friendly moves for hanging out without standing around."
+  },
+  "focus-reset": {
+    title: "Focus Reset",
+    text: "Calm movement for stress, focus, and feeling less stuck."
+  },
+  "big-energy": {
+    title: "Big Energy",
+    text: "Higher-energy moves for burning off restlessness in a good way."
+  },
+  "outside-adventure": {
+    title: "Outside Adventure",
+    text: "Fresh-air movement for people who need scenery more than a scoreboard."
+  }
+};
+
 const activities = [
   {
     name: "Basketball",
-    category: "sports",
+    group: "social-energy",
     description: "Shoot around, play one-on-one, or just practice trick shots with a friend.",
     icon: "ball",
     color: "#f6c56f"
   },
   {
     name: "Soccer",
-    category: "sports",
+    group: "social-energy",
     description: "Kick, pass, and run in short bursts. A driveway or park is enough.",
     icon: "goal",
     color: "#b9dfc0"
   },
   {
     name: "Volleyball",
-    category: "sports",
+    group: "social-energy",
     description: "A team sport that can be silly, social, and less intense than it looks.",
     icon: "ball",
     color: "#f4a397"
   },
   {
     name: "Badminton",
-    category: "sports",
+    group: "mood-boost",
     description: "Light, fast, and easier to start than most racket sports.",
     icon: "racket",
     color: "#b9d2ef"
   },
   {
     name: "Table Tennis",
-    category: "sports",
+    group: "mood-boost",
     description: "Quick rallies, tiny space, and no need to run across a full court.",
     icon: "racket",
     color: "#f5dfa0"
   },
   {
     name: "Tennis",
-    category: "sports",
+    group: "focus-reset",
     description: "Hit with a partner or bounce against a wall until it starts to click.",
     icon: "racket",
     color: "#c5e8cf"
   },
   {
     name: "Pickleball",
-    category: "sports",
+    group: "social-energy",
     description: "A friendly court game with shorter movements and a low-pressure vibe.",
     icon: "paddle",
     color: "#e9b4d0"
   },
   {
     name: "Swimming",
-    category: "sports",
+    group: "focus-reset",
     description: "Easy on joints, cool in summer, and perfect for moving without feeling sweaty.",
     icon: "wave",
     color: "#a9d9f6"
   },
   {
     name: "Skateboarding",
-    category: "sports",
+    group: "mood-boost",
     description: "Practice balance, small tricks, and cruising at your own speed.",
     icon: "board",
     color: "#d0c0ee"
   },
   {
     name: "Roller Skating",
-    category: "sports",
+    group: "mood-boost",
     description: "Music plus wheels makes movement feel more like hanging out.",
     icon: "skate",
     color: "#f1b4a9"
   },
   {
     name: "Jump Rope",
-    category: "workouts",
+    group: "big-energy",
     description: "Start with twenty jumps and build up whenever you feel ready.",
     icon: "rope",
     color: "#f6c56f"
   },
   {
     name: "Bodyweight Circuit",
-    category: "workouts",
+    group: "big-energy",
     description: "Try squats, wall pushups, and planks without needing equipment.",
     icon: "bolt",
     color: "#b9dfc0"
   },
   {
     name: "Yoga",
-    category: "chill",
+    group: "focus-reset",
     description: "Stretch, breathe, and get stronger without turning everything into a competition.",
     icon: "sun",
     color: "#f5dfa0"
   },
   {
     name: "Pilates",
-    category: "workouts",
+    group: "focus-reset",
     description: "Slow, controlled moves that make your core feel secretly powerful.",
     icon: "arc",
     color: "#d0c0ee"
   },
   {
     name: "Dance Workout",
-    category: "creative",
+    group: "mood-boost",
     description: "Pick a song and move badly on purpose until it becomes fun.",
     icon: "music",
     color: "#f4a397"
   },
   {
     name: "Walking",
-    category: "chill",
+    group: "soft-start",
     description: "The easiest start: walk around the block, around school, or around a store.",
     icon: "foot",
     color: "#c5e8cf"
   },
   {
     name: "Jog-Walk",
-    category: "workouts",
+    group: "big-energy",
     description: "Jog for thirty seconds, walk for two minutes, repeat as gently as needed.",
     icon: "path",
     color: "#b9d2ef"
   },
   {
     name: "Cycling",
-    category: "outdoors",
+    group: "outside-adventure",
     description: "Ride for errands, fresh air, or just to make a boring route feel different.",
     icon: "bike",
     color: "#a9d9f6"
   },
   {
     name: "Hiking",
-    category: "outdoors",
+    group: "outside-adventure",
     description: "A walk with better scenery and built-in snack breaks.",
     icon: "mountain",
     color: "#b9dfc0"
   },
   {
     name: "Frisbee",
-    category: "outdoors",
+    group: "social-energy",
     description: "Low equipment, easy rules, and lots of chances to laugh off bad throws.",
     icon: "disc",
     color: "#f5dfa0"
   },
   {
     name: "Ultimate Frisbee",
-    category: "sports",
+    group: "social-energy",
     description: "Team play that rewards passing, spacing, and trying again.",
     icon: "disc",
     color: "#f1b4a9"
   },
   {
     name: "Climbing",
-    category: "workouts",
+    group: "big-energy",
     description: "Solve routes like puzzles while your arms and legs do the work.",
     icon: "mountain",
     color: "#d0c0ee"
   },
   {
     name: "Martial Arts",
-    category: "workouts",
+    group: "focus-reset",
     description: "Learn balance, focus, and confidence one form or drill at a time.",
     icon: "star",
     color: "#f4a397"
   },
   {
     name: "Kickboxing",
-    category: "workouts",
+    group: "big-energy",
     description: "Punch and kick pads for stress relief with clear, learnable patterns.",
     icon: "bolt",
     color: "#f6c56f"
   },
   {
     name: "Dodgeball",
-    category: "sports",
+    group: "social-energy",
     description: "Chaotic, quick, and funny if everyone keeps it friendly.",
     icon: "ball",
     color: "#b9d2ef"
   },
   {
     name: "Bowling",
-    category: "chill",
+    group: "soft-start",
     description: "A relaxed sport where snacks and friends are basically part of the game.",
     icon: "pins",
     color: "#e9b4d0"
   },
   {
     name: "Mini Golf",
-    category: "chill",
+    group: "soft-start",
     description: "Tiny challenges, goofy obstacles, and no need to be super serious.",
     icon: "flag",
     color: "#c5e8cf"
   },
   {
     name: "Disc Golf",
-    category: "outdoors",
+    group: "outside-adventure",
     description: "Walk a course, throw discs, and keep moving without sprinting.",
     icon: "disc",
     color: "#f5dfa0"
   },
   {
     name: "Kayaking",
-    category: "outdoors",
+    group: "outside-adventure",
     description: "Paddle on calm water and let the view do half the convincing.",
     icon: "wave",
     color: "#a9d9f6"
   },
   {
     name: "Gardening",
-    category: "outdoors",
+    group: "soft-start",
     description: "Digging, carrying, and planting count as movement, and you get results you can see.",
     icon: "leaf",
     color: "#b9dfc0"
   },
   {
     name: "Active Video Games",
-    category: "creative",
+    group: "mood-boost",
     description: "Use dancing, fitness, or sports games as a bridge from screen time to movement.",
     icon: "controller",
     color: "#d0c0ee"
   },
   {
     name: "Cheer Basics",
-    category: "creative",
+    group: "big-energy",
     description: "Learn jumps, chants, and simple routines with rhythm and energy.",
     icon: "star",
     color: "#f1b4a9"
   },
   {
     name: "Park Games",
-    category: "outdoors",
+    group: "outside-adventure",
     description: "Tag, capture the flag, or made-up rules all count if they get people moving.",
     icon: "flag",
     color: "#f6c56f"
   },
   {
     name: "Stretch Breaks",
-    category: "chill",
+    group: "soft-start",
     description: "A few minutes of stretching can reset your body between homework, games, or scrolling.",
     icon: "arc",
     color: "#c5e8cf"
@@ -264,16 +332,15 @@ const iconTemplates = {
   controller: '<rect x="18" y="36" width="64" height="36" rx="15"></rect><path d="M35 54h16M43 46v16"></path><circle cx="64" cy="54" r="3"></circle><circle cx="74" cy="54" r="3"></circle>'
 };
 
-const grid = document.querySelector("#activity-grid");
+const gallery = document.querySelector("#activity-gallery");
 const count = document.querySelector("#activity-count");
-const filterButtons = document.querySelectorAll(".filter-button");
+const quiz = document.querySelector("#move-quiz");
+const quizResult = document.querySelector("#quiz-result");
 
-function renderActivities(filter) {
-  const visibleActivities = filter === "all"
-    ? activities
-    : activities.filter((activity) => activity.category === filter);
+function renderActivityCard(activity) {
+  const group = groupLookup[activity.group];
 
-  grid.innerHTML = visibleActivities.map((activity) => `
+  return `
     <article class="activity-card">
       <div class="activity-icon" style="--card-color: ${activity.color}">
         <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
@@ -283,20 +350,112 @@ function renderActivities(filter) {
       <div class="activity-body">
         <h3>${activity.name}</h3>
         <p>${activity.description}</p>
-        <span class="tag">${activity.category}</span>
+        <span class="tag">${group.name}</span>
       </div>
     </article>
-  `).join("");
-
-  count.textContent = `${visibleActivities.length} activities`;
+  `;
 }
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    renderActivities(button.dataset.filter);
-  });
-});
+function renderGroupedActivities() {
+  gallery.innerHTML = activityGroups.map((group) => {
+    const groupActivities = activities.filter((activity) => activity.group === group.id);
 
-renderActivities("all");
+    return `
+      <section class="activity-group" id="group-${group.id}">
+        <div class="group-heading">
+          <div>
+            <h3>${group.name}</h3>
+            <p>${group.description}</p>
+          </div>
+          <span class="group-meta">${group.energy} - ${groupActivities.length} ideas</span>
+        </div>
+        <div class="card-grid">
+          ${groupActivities.map(renderActivityCard).join("")}
+        </div>
+      </section>
+    `;
+  }).join("");
+
+  count.textContent = `${activities.length} activities in ${activityGroups.length} mood groups`;
+}
+
+function getQuizValues() {
+  return {
+    energy: quiz.elements.energy.value,
+    mood: quiz.elements.mood.value,
+    people: quiz.elements.people.value
+  };
+}
+
+function scoreQuiz() {
+  const values = getQuizValues();
+  const scores = Object.fromEntries(activityGroups.map((group) => [group.id, 0]));
+
+  if (values.energy === "low") {
+    scores["soft-start"] += 3;
+    scores["focus-reset"] += 2;
+  }
+
+  if (values.energy === "medium") {
+    scores["mood-boost"] += 3;
+    scores["outside-adventure"] += 2;
+    scores["social-energy"] += 1;
+  }
+
+  if (values.energy === "high") {
+    scores["big-energy"] += 3;
+    scores["social-energy"] += 2;
+  }
+
+  if (values.mood === "calm") {
+    scores["focus-reset"] += 3;
+    scores["soft-start"] += 2;
+  }
+
+  if (values.mood === "social") {
+    scores["social-energy"] += 3;
+    scores["mood-boost"] += 2;
+  }
+
+  if (values.mood === "bold") {
+    scores["big-energy"] += 2;
+    scores["outside-adventure"] += 2;
+    scores["mood-boost"] += 1;
+  }
+
+  if (values.people === "solo") {
+    scores["soft-start"] += 2;
+    scores["focus-reset"] += 2;
+    scores["outside-adventure"] += 1;
+  }
+
+  if (values.people === "friend") {
+    scores["mood-boost"] += 2;
+    scores["outside-adventure"] += 2;
+    scores["social-energy"] += 1;
+  }
+
+  if (values.people === "group") {
+    scores["social-energy"] += 3;
+    scores["big-energy"] += 1;
+  }
+
+  return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+}
+
+function updateQuizResult() {
+  const matchId = scoreQuiz();
+  const match = quizMatches[matchId];
+
+  quizResult.innerHTML = `
+    <span>Best fit</span>
+    <strong>${match.title}</strong>
+    <p>${match.text}</p>
+    <a class="button primary" href="#group-${matchId}">See this group</a>
+  `;
+}
+
+quiz.addEventListener("change", updateQuizResult);
+
+renderGroupedActivities();
+updateQuizResult();

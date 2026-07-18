@@ -14,6 +14,7 @@
     </a>
     <nav class="nav-links" aria-label="Main navigation">
       <a href="#reasons">Reasons</a>
+      <a href="#quiz">Quiz</a>
       <a href="#moves">Pick a Move</a>
       <a href="#starter">Start Small</a>
     </nav>
@@ -42,7 +43,7 @@
           You just need one move that makes today feel a little more alive.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#moves">Find a move</a>
+          <a class="button primary" href="#quiz">Take the quiz</a>
           <a class="button secondary" href="#reasons">Why bother?</a>
         </div>
       </div>
@@ -73,26 +74,66 @@
       </div>
     </section>
 
+    <section class="section quiz-section" id="quiz">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Tiny quiz</p>
+          <h2>What kind of move fits your mood?</h2>
+          <p>Answer three quick questions and get a group that feels less like pressure and more like a plan.</p>
+        </div>
+      </div>
+
+      <form class="quiz-card" id="move-quiz">
+        <fieldset>
+          <legend>How much energy do you have right now?</legend>
+          <label><input type="radio" name="energy" value="low" checked> Low. I need something easy.</label>
+          <label><input type="radio" name="energy" value="medium"> Medium. I can move, but not suffer.</label>
+          <label><input type="radio" name="energy" value="high"> High. I want to burn some energy.</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>What mood are you trying to fix?</legend>
+          <label><input type="radio" name="mood" value="calm" checked> Stressed or tired</label>
+          <label><input type="radio" name="mood" value="social"> Bored or lonely</label>
+          <label><input type="radio" name="mood" value="bold"> Restless or stuck</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Who sounds best to move with?</legend>
+          <label><input type="radio" name="people" value="solo" checked> Just me</label>
+          <label><input type="radio" name="people" value="friend"> One friend</label>
+          <label><input type="radio" name="people" value="group"> A group</label>
+        </fieldset>
+
+        <div class="quiz-result" id="quiz-result" aria-live="polite">
+          <span>Best fit</span>
+          <strong>Soft Start</strong>
+          <p>Low-pressure moves for days when getting started is the whole win.</p>
+          <a class="button primary" href="#group-soft-start">See this group</a>
+        </div>
+      </form>
+    </section>
+
     <section class="section moves-section" id="moves">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Gallery</p>
           <h2>Pick Your Own Move</h2>
-          <p>Choose by vibe, not by how athletic you think you are.</p>
+          <p>Choose by mood and energy, not by how athletic you think you are.</p>
         </div>
         <div class="activity-count" id="activity-count" aria-live="polite"></div>
       </div>
 
-      <div class="filter-bar" aria-label="Activity categories">
-        <button class="filter-button active" data-filter="all" type="button">All</button>
-        <button class="filter-button" data-filter="sports" type="button">Sports</button>
-        <button class="filter-button" data-filter="workouts" type="button">Workouts</button>
-        <button class="filter-button" data-filter="outdoors" type="button">Outdoors</button>
-        <button class="filter-button" data-filter="creative" type="button">Creative</button>
-        <button class="filter-button" data-filter="chill" type="button">Chill</button>
+      <div class="mood-jump-bar" aria-label="Activity mood groups">
+        <a href="#group-soft-start">Soft Start</a>
+        <a href="#group-mood-boost">Mood Boost</a>
+        <a href="#group-social-energy">Social Energy</a>
+        <a href="#group-focus-reset">Focus Reset</a>
+        <a href="#group-big-energy">Big Energy</a>
+        <a href="#group-outside-adventure">Outside Adventure</a>
       </div>
 
-      <div class="card-grid" id="activity-grid"></div>
+      <div class="grouped-gallery" id="activity-gallery"></div>
     </section>
 
     <section class="section starter" id="starter">
