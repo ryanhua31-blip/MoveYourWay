@@ -336,6 +336,9 @@ const gallery = document.querySelector("#activity-gallery");
 const count = document.querySelector("#activity-count");
 const quiz = document.querySelector("#move-quiz");
 const quizResult = document.querySelector("#quiz-result");
+let currentMatchId = "";
+let pendingMatchId = "";
+let resultAnimationTimer;
 
 function renderActivityCard(activity) {
   const group = groupLookup[activity.group];
@@ -443,16 +446,48 @@ function scoreQuiz() {
   return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
 }
 
-function updateQuizResult() {
-  const matchId = scoreQuiz();
-  const match = quizMatches[matchId];
+function setQuizResult(matchId) {
+  if (matchId === currentMatchId && pendingMatchId === "") {
+    return;
+  }
 
-  quizResult.innerHTML = `
-    <span>Best fit</span>
-    <strong>${match.title}</strong>
-    <p>${match.text}</p>
-    <a class="button primary" href="#group-${matchId}">See this group</a>
-  `;
+  const hasPreviousResult = currentMatchId !== "";
+
+  clearTimeout(resultAnimationTimer);
+  pendingMatchId = matchId;
+
+  const renderResult = () => {
+    const nextMatchId = pendingMatchId;
+    const match = quizMatches[nextMatchId];
+
+    quizResult.innerHTML = `
+      <span>Best fit</span>
+      <strong>${match.title}</strong>
+      <p>${match.text}</p>
+      <a class="button primary" href="#group-${nextMatchId}">See this group</a>
+    `;
+
+    currentMatchId = nextMatchId;
+    pendingMatchId = "";
+    quizResult.classList.remove("is-changing");
+    quizResult.classList.add("is-fresh");
+    resultAnimationTimer = setTimeout(() => {
+      quizResult.classList.remove("is-fresh");
+    }, 380);
+  };
+
+  if (!hasPreviousResult) {
+    renderResult();
+    return;
+  }
+
+  quizResult.classList.remove("is-fresh");
+  quizResult.classList.add("is-changing");
+  resultAnimationTimer = setTimeout(renderResult, 150);
+}
+
+function updateQuizResult() {
+  setQuizResult(scoreQuiz());
 }
 
 quiz.addEventListener("change", updateQuizResult);
